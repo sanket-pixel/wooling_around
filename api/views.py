@@ -13,10 +13,15 @@ def getData(request):
 
 @api_view(['POST'])
 def addItem(request):
-    serializer  = ItemSerializer(data = request.data)
-    if serializer.is_valid():
-        serializer.save()
-    return Response(serializer.data)
+    data, matched_flag = scrape_informatino(request.data["brand_name"], request.data["product_name"])
+    if matched_flag :
+        serializer  = ItemSerializer(data = data)
+        if serializer.is_valid():
+            serializer.save()
+        return Response({'status':'success','content':serializer.data},status=200)
+    else:
+        return Response({'status': 'failed', 'content':{}}, status=404)
+
 
 
 
@@ -27,12 +32,17 @@ def get_sub_url(brand_name,product_name):
     combined_brand_product_name = f'{brand_name}-{product_name}'
     return f'{brand_name}/{combined_brand_product_name}'
 
-
-def scrape_informatino(brand_name = "DMC", product_name = "Natura"):
+# {"brand_name": "DMC", "product_name" : "Natura"}
+def scrape_informatino(brand_name = "DMC", product_name = "Natura Medium"):
     base_url = "https://www.wollplatz.de/wolle"
     sub_url = get_sub_url(brand_name, product_name)
     target_url = f'{base_url}/{sub_url}'
     re = requests.get(target_url)
+    if re.status_code!=200:
+        matched_flag = False
+        return {}, matched_flag
+    else:
+        matched_flag = True
     soup = BeautifulSoup(re.text, "html.parser")
     table_data = list(soup.find("div", {"id": "pdetailTableSpecs"}).children)[3]
     specs = dict([[cell.text for cell in row("td")]
@@ -46,4 +56,4 @@ def scrape_informatino(brand_name = "DMC", product_name = "Natura"):
         "needle_size": specs["Nadelstärke"],
         "composition": specs["Zusammenstellung"]
     }
-    return data
+    return data,matched_flag
