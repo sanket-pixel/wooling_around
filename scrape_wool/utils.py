@@ -1,29 +1,19 @@
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-from base.models import WoolItem
-from .serializers import ItemSerializer
 from bs4 import BeautifulSoup
+from .models import WoolItem
 import requests
 
-@api_view(['GET'])
-def getData(request):
-    items = WoolItem.objects.all()
-    serializer = ItemSerializer(items, many=True)
-    return Response(serializer.data)
-
-@api_view(['POST'])
-def addItem(request):
-    data, matched_flag = scrape_informatino(request.data["brand_name"], request.data["product_name"])
+def addItem(data):
+    data, matched_flag = scrape_informatino(data["brand"], data["product"])
     if matched_flag :
-        serializer  = ItemSerializer(data = data)
-        if serializer.is_valid():
-            serializer.save()
-        return Response({'status':'success','content':serializer.data},status=200)
+        w = WoolItem(**data)
+        w.save()
+        return w,True
     else:
-        return Response({'status': 'failed', 'content':{}}, status=404)
+        return None, False
 
-
-
+def getItem():
+    items = WoolItem.objects.all()
+    return items
 
 def get_sub_url(brand_name,product_name):
     brand_name = brand_name.lower()
@@ -32,7 +22,7 @@ def get_sub_url(brand_name,product_name):
     combined_brand_product_name = f'{brand_name}-{product_name}'
     return f'{brand_name}/{combined_brand_product_name}'
 
-# {"brand_name": "DMC", "product_name" : "Natura"}
+
 def scrape_informatino(brand_name = "DMC", product_name = "Natura Medium"):
     base_url = "https://www.wollplatz.de/wolle"
     sub_url = get_sub_url(brand_name, product_name)
@@ -51,9 +41,12 @@ def scrape_informatino(brand_name = "DMC", product_name = "Natura Medium"):
     price = float(price.replace(",", "."))
     currency = soup.find("span", {"class": "product-price-currency"}).text.strip()
     data = {
+        "brand":brand_name,
+        "product":product_name,
         "price" : price,
         "currency" : currency,
         "needle_size": specs["Nadelstärke"],
-        "composition": specs["Zusammenstellung"]
+        "composition": specs["Zusammenstellung"],
+        "link": target_url
     }
-    return data,matched_flag
+    return data, matched_flag
