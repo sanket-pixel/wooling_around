@@ -16,11 +16,20 @@ Please visit  https://wooling-around.herokuapp.com/ to check it out.
   ```
   Please run `cd wooling_around` only from the folder containing the cloned repo.
 
-  2. Now install the requirements for this project using the `requirements.txt` file.
+  2. Now create a virtual environment 
   ```
-  pip3 install -r requirements.txt
+  python3 -m venv ./venv
+  source ./venv/bin/activate 
   ```
-  
+  Note : for Windows run :
+  ```
+  .\venv\Scripts\activate.bat
+  ```
+  3. Install the requirements for this project using the `requirements.txt` file in the virtual environment.
+  ```
+    pip3 install -r requirements.txt
+  ```
+  Please ensure that all packages in the `requirements.txt` file are successfully installed.
   3. Make migrations for the  Django Models and migrate.
   ```
   python manage.py makemigrations 
