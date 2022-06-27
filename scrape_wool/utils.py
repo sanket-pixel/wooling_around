@@ -3,9 +3,7 @@ from .models import WoolItem
 import requests
 
 def addItem(data):
-    # get the scraped data as dictionary
     data, matched_flag = scrape_informatino(data["brand"], data["product"])
-    # if data exists for this brand and product, add it to local database
     if matched_flag :
         w = WoolItem(**data)
         w.save()
@@ -14,7 +12,6 @@ def addItem(data):
         return None, False
 
 def getItem():
-    # get all items from local database and return
     items = WoolItem.objects.all()
     return items
 
