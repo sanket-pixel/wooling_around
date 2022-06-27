@@ -43,6 +43,11 @@ Please visit  https://wooling-around.herokuapp.com/ to check it out.
   python manage.py runserver
   ```
   
+  5. For running tests, please run the following command 
+  ```
+  python manage.py test
+  ```
+  
   ## Tech-Stack
   The project essentially scrapes data from a wool market place, everytime the homepage is loaded. 
   
