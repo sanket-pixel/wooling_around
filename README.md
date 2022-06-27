@@ -49,7 +49,13 @@ Please visit  https://wooling-around.herokuapp.com/ to check it out.
   <img src="https://github.com/sanket-pixel/wooling_around/blob/main/data/Overview.png" />
 </p>
 
-# Snapshot
+## More Ideas
+1. Extensive data analytics can be added on top of existing framework by collecting temporal information of woolprices over time and doing time series analytics like seasonal patterns or discount prediction.
+2. A dashboard can be built using data containing a bar chart with products on x-axis and price on y-axis. This will give visual overview of price comparisons. 
+3. A search feature can be added, where the user can search for brand or product and get visual analytics for price and quality comparison for all items that matched the search.
+4. An alert feature can be added where, the user will be emailed or notifited with discounts on products they regularly search.
+
+## Snapshot
 Just for completeness, here is a screenshot of the app after being deployed.
 <p align="center">
   <img src="https://github.com/sanket-pixel/wooling_around/blob/main/data/woolling-around.jpg" />
