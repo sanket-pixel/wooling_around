@@ -1,1 +1,1 @@
-web:gunicorn wooling_around.wsgi --log-file -
+web: gunicorn wooling_around.wsgi --log-file -
