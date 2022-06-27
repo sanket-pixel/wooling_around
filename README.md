@@ -1,6 +1,9 @@
 # Wooling Around
 Helping grandmothers around the world, buying the right wool, at the right price.
 
+The website extracts price and other features for specific wool products real time from a well known wool marketplace.
+The backend also stores the collected data in the database as well as a json file.
+
 
 ## Try it out 
 The website is already live and ready to use!
