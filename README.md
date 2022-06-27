@@ -2,12 +2,12 @@
 Helping grandmothers around the world, buying the right wool, at the right price.
 
 
-# Try it out 
+## Try it out 
 The website is already live and ready to use!
 
 Please visit  https://wooling-around.herokuapp.com/ to check it out.
 
-# Installation Guide
+## Installation Guide
   1. First clone this repository and move into the cloned directory.
 
   ```
@@ -40,7 +40,7 @@ Please visit  https://wooling-around.herokuapp.com/ to check it out.
   python manage.py runserver
   ```
   
-  # Tech-Stack
+  ## Tech-Stack
   The project essentially scrapes data from a wool market place, everytime the homepage is loaded. 
   
   The project is entirely based in **Python** and uses the **Django** framework for creating the backend and frontend. For scraping, the python library called **Beautiful soup** is used. And for the front-end basic **html, css and js** template is used. The data after scraping is stored in a **local sqlite database**.
