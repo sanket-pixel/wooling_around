@@ -45,4 +45,7 @@ Please visit  https://wooling-around.herokuapp.com/ to check it out.
   
   The project is entirely based in **Python** and uses the **Django** framework for creating the backend and frontend. For scraping, the python library called **Beautiful soup** is used. And for the front-end basic **html, css and js** template is used. The data after scraping is stored in a **local sqlite database**. The diagram below depicts an overview of the design.
   
- ![Overview](https://github.com/sanket-pixel/wooling_around/blob/main/data/Overview.png)
+<p align="center">
+  <img src="https://github.com/sanket-pixel/wooling_around/blob/main/data/Overview.png" />
+</p>
+
