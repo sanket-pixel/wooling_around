@@ -49,3 +49,9 @@ Please visit  https://wooling-around.herokuapp.com/ to check it out.
   <img src="https://github.com/sanket-pixel/wooling_around/blob/main/data/Overview.png" />
 </p>
 
+# Snapshot
+Just for completeness, here is a screenshot of the app after being deployed.
+<p align="center">
+  <img src="https://github.com/sanket-pixel/wooling_around/blob/main/data/woolling-around.jpg" />
+</p>
+
